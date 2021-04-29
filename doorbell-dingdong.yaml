@@ -1,0 +1,102 @@
+esphome:
+  name: doorbell
+  platform: ESP8266
+  board: d1_mini
+ 
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+ 
+ 
+# Enable logging
+logger:
+ 
+# Enable Home Assistant API
+api:
+ 
+ota:
+ 
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+ 
+text_sensor:
+  - platform: version
+    name: Doorbell ESPHome Version
+  - platform: wifi_info
+    ip_address:
+      name: Doorbell IP
+    ssid:
+      name: Doorbell SSID
+    bssid:
+      name: Doorbell BSSID
+ 
+sensor:
+  - platform: uptime
+    name: Doorbell Uptime
+  - platform: wifi_signal
+    name: Doorbell WiFi Signal
+    update_interval: 60s
+ 
+globals:
+  - id: chime
+    type: bool
+    restore_value: true
+    initial_value: 'true'
+ 
+switch:
+  - platform: gpio
+    pin:
+      number: D1
+      inverted: false
+    name: "Doorbell Relay"
+    id: relay
+    internal: true
+    icon: mdi:alarm-bell
+  - platform: restart
+    name: "Doorbell Restart"
+  - platform: template
+    name: Doorbell Chime Active
+    id: chime_active
+    restore_state: false
+    turn_on_action:
+      - globals.set:
+          id: chime
+          value: 'true'
+    turn_off_action:
+      - globals.set:
+          id: chime
+          value: 'false'
+    lambda: |-
+      return id(chime);
+     
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: D5
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Doorbell"
+    filters:
+      - delayed_on: 50ms
+      - delayed_off: 3000ms # prevents from re-ringing within 3 seconds
+    on_press:
+      then:
+        if:
+          condition:
+            - switch.is_on: chime_active
+          then:
+            - switch.turn_on: relay
+            - delay: 200ms
+            - switch.turn_off: relay
+            - delay: 600ms
+            - switch.turn_on: relay
+            - delay: 200ms
+            - switch.turn_off: relay
+            - delay: 600ms
+            - switch.turn_on: relay
+            - delay: 200ms
+            - switch.turn_off: relay            
+ 
+  - platform: status
+    name: "Status Doorbell"
