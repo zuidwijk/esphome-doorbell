@@ -1,2 +1,1 @@
-# esphome-doorbell
-ESPHome based DoorBell
+#ESPHome based DoorBell
