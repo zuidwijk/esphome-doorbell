@@ -1,0 +1,134 @@
+esphome:
+  name: dingdong
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  networks:
+    - ssid: !secret wifi_ssid
+      password: !secret wifi_password
+  ap:
+    ssid: "ESPHome DingDong Setup"
+  
+# Enable the captive portal for inital WiFi setup
+captive_portal:
+
+# Enable logging
+logger:
+
+ota:
+
+# Enable Home Assistant API
+api:
+  services:
+    - service: dingdong
+      then:
+        - script.execute: dingdong_script
+
+script:
+  id: dingdong_script
+  then:
+    if:
+      condition:
+        - switch.is_on: chime_active
+      then:
+        - switch.turn_on: relay
+        - delay: 200ms
+        - switch.turn_off: relay
+        - delay: 600ms
+        - switch.turn_on: relay
+        - delay: 200ms
+        - switch.turn_off: relay
+        - delay: 600ms
+        - switch.turn_on: relay
+        - delay: 200ms
+        - switch.turn_off: relay    
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+text_sensor:
+  - platform: version
+    name: dingdong ESPHome Version
+  - platform: wifi_info
+    ip_address:
+      name: DingDong IP
+    ssid:
+      name: DingDong SSID
+    bssid:
+      name: DingDong BSSID
+
+sensor:
+  - platform: uptime
+    name: DingDong Uptime
+  - platform: wifi_signal
+    name: DingDong WiFi Signal
+    update_interval: 60s
+
+globals:
+  - id: chime
+    type: bool
+    restore_value: true
+    initial_value: 'true'
+
+switch:
+  - platform: gpio
+    pin:
+      number: D1
+      inverted: false
+    name: "DingDong Relay"
+    id: relay
+    internal: true
+    icon: mdi:alarm-bell
+  - platform: restart
+    name: "DingDong Restart"
+  - platform: template
+    name: DingDong Chime Active
+    id: chime_active
+    restore_state: false
+    turn_on_action:
+      - globals.set:
+          id: chime
+          value: 'true'
+    turn_off_action:
+      - globals.set:
+          id: chime
+          value: 'false'
+    lambda: |-
+      return id(chime);
+
+
+binary_sensor:
+  - platform: template
+    name: Trigger
+  - platform: gpio
+    pin:
+      number: D5
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "DingDong"
+    filters:
+      # Small filter, to debounce the button press.
+      - delayed_on: 25ms
+      - delayed_off: 3000ms # prevents from re-ringing within 3 seconds
+    on_press:
+      then:
+        if:
+          condition:
+            - switch.is_on: chime_active
+          then:
+            - switch.turn_on: relay
+            - delay: 200ms
+            - switch.turn_off: relay
+            - delay: 600ms
+            - switch.turn_on: relay
+            - delay: 200ms
+            - switch.turn_off: relay
+            - delay: 600ms
+            - switch.turn_on: relay
+            - delay: 200ms
+            - switch.turn_off: relay 
+
+  - platform: status
+    name: "Status DingDong"
