@@ -43,3 +43,28 @@ script:
         - switch.turn_off: relay
 ```
 That together with te rest of the esphome yaml code is the [dingdong.yaml](https://github.com/zuidwijk/esphome-doorbell/blob/main/dingdong.yaml) file
+
+## Automation
+I'm using 3 services in my [automation](https://github.com/zuidwijk/esphome-doorbell/blob/main/automation.yaml): App notification, Light notification and 2nd doorbell notification. These happens when somebody is pushing the doorbell, no matter if it is mute. Both main and secondary bell have each their own mute switch (<node>.chime_active) 
+```YAML
+  - id: '<random generated id>'
+  alias: Notify Doorbell
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.doorbell
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_iphone
+    data:
+      title: Deurbel gaat
+      message: Er belt iemand aan
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      entity_id: light.notify
+  - service: esphome.dingdong_dingdong
+```
