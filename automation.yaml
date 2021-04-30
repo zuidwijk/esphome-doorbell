@@ -1,0 +1,20 @@
+- id: '1615131085039'
+  alias: Notify Doorbell
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.doorbell
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_iphone
+    data:
+      title: Deurbel gaat
+      message: Er belt iemand aan
+  - service: light.turn_on
+    data:
+      flash: short
+    target:
+      entity_id: light.notify
+  - service: esphome.dingdong_dingdong
