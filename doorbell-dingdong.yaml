@@ -3,7 +3,7 @@ esphome:
   platform: ESP8266
   board: d1_mini
   project:
-    name: zuidwijk.slimmelezer
+    name: zuidwijk.doorbell
     version: "2.0"
  
 wifi:
