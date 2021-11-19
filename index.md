@@ -10,7 +10,7 @@ The ESPHome Doorbell is a simple device to make your 'dumb' doorbell smart. Base
 
 You can use the button below to install my temp-sensor firmware directly to your device via USB from the browser.
 
-<esp-web-install-button manifest="./firmware/manifest.json"></esp-web-install-button>
+<esp-web-install-button manifest="./manifest.json"></esp-web-install-button>
 
 <script type="module" src="https://unpkg.com/esp-web-tools@5.2.0/dist/web/install-button.js?module"></script>
 
