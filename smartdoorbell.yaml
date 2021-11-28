@@ -10,12 +10,12 @@ dashboard_import:
   package_import_url: github://zuidwijk/doorbell/smartdoorbell.yaml
 
 wifi:
-  networks: []
+#  networks: []
   
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Doorbell"
-    ap_timeout: 15s
+    ssid: "smartdoorbell"
+#    ap_timeout: 15s
 
 captive_portal:
 
