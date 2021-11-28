@@ -1,5 +1,5 @@
 esphome:
-  name: doorbell
+  name: smartdoorbell
   platform: ESP8266
   board: d1_mini
   project:
@@ -7,7 +7,7 @@ esphome:
     version: "2.0"
 
 dashboard_import:
-  package_import_url: github://zuidwijk/doorbell/blob/main/doorbell.yaml
+  package_import_url: github://zuidwijk/doorbell/smartdoorbell.yaml
 
 wifi:
   networks: []
