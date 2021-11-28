@@ -1,6 +1,6 @@
 {
   "name": "ESPHome Doorbell",
-  "version": "2021.11.1",
+  "version": "2021.11.3",
   "home_assistant_domain": "esphome",
   "new_install_skip_erase": false,
   "builds": [
