@@ -14,7 +14,8 @@ wifi:
   ap:
     ssid: ${device_name}
  
- 
+captive_portal:
+
 # Enable logging
 logger:
  
