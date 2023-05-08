@@ -1,5 +1,8 @@
 esphome:
   name: smart-doorbell
+  project:
+    name: zuidwijk.smart-doorbell
+    version: "1.0"
 
 esp32:
   board: esp32dev
