@@ -26,6 +26,9 @@ captive_portal:
 
 improv_serial:
 
+esp32_improv:
+  authorizer: none
+
 #doesnt work together with captive_portal
 esp32_ble_tracker:
   scan_parameters:
