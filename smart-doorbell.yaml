@@ -41,6 +41,7 @@ web_server:
 
 dashboard_import:
   package_import_url: github://zuidwijk/esphome-doorbell/smart-doorbell.yaml@main
+  import_full_config: true
 
 time:
   - platform: homeassistant
