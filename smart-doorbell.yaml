@@ -18,8 +18,9 @@ api:
 ota:
 
 wifi:
-#  ssid: !secret wifi_ssid # <-- remove leading '#' and fill in your wifi details
-#  password: !secret wifi_password # <-- remove leading '#' and fill in your wifi details
+  # remove leading '#' and fill in your wifi details
+#  ssid: !secret wifi_ssid 
+#  password: !secret wifi_password
   ap:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
     ssid: "smart-doorbell"
