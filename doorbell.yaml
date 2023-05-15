@@ -30,6 +30,9 @@ ota:
 
 improv_serial:
 
+web_server:
+  port: 80
+
 dashboard_import:
   package_import_url: github://zuidwijk/esphome-doorbell/doorbell.yaml@main
   import_full_config: true
