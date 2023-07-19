@@ -79,7 +79,8 @@ switch:
   - platform: template
     name: Doorbell Chime Active
     id: chime_active
-    restore_state: false
+    restore_mode: disabled
+#    restore_state: false ## not used in 2023.7.0
     turn_on_action:
       - globals.set:
           id: chime
