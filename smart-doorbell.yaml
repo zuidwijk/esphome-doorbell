@@ -91,7 +91,7 @@ switch:
   - platform: template
     name: Doorbell Chime Active
     id: chime_active
-    restore_state: false
+    restore_mode: disabled
     turn_on_action:
       - globals.set:
           id: chime
