@@ -43,7 +43,7 @@ bluetooth_proxy:
 web_server:
   port: 80
 
-#dashboard_import:
+dashboard_import:
   package_import_url: github://zuidwijk/esphome-doorbell/smart-doorbell2.yaml@main
   import_full_config: true
 
