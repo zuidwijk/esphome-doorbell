@@ -23,3 +23,5 @@ Either the green or blue connecter, depends on which one I’ve used, is where t
 ## New situation with ESPHome Doorbell
 ![deurbel-nieuw](https://user-images.githubusercontent.com/10123063/133784973-a355223f-bcd9-4fb6-b6a5-7d66fc4bc4af.png)
 
+## New situation with ESPHome Doorbell v3
+![doorbell_v3_schematic](https://github.com/zuidwijk/esphome-doorbell/assets/19435932/5b5f1565-4c30-4055-b002-84d7e53ef913)
