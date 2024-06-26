@@ -16,6 +16,7 @@ logger:
 api:
 
 ota:
+  platform: esphome
 
 wifi:
   # remove leading '#' and fill in your wifi details
