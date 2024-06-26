@@ -27,6 +27,7 @@ logger:
 api:
  
 ota:
+  platform: esphome
 
 improv_serial:
 
