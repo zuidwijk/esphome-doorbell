@@ -74,6 +74,10 @@ globals:
     type: bool
     restore_value: true
     initial_value: 'true'
+ 
+button:
+  - platform: restart
+    name: "Doorbell Restart"
 
 switch:
   - platform: gpio
@@ -84,8 +88,6 @@ switch:
     id: relay
     internal: true
     icon: mdi:alarm-bell
-  - platform: restart
-    name: "DingDong Restart"
   - platform: template
     name: DingDong Chime Active
     id: chime_active

@@ -47,6 +47,10 @@ globals:
     restore_value: true
     initial_value: 'true'
  
+button:
+  - platform: restart
+    name: "Doorbell Restart"
+ 
 switch:
   - platform: gpio
     pin:
@@ -56,8 +60,6 @@ switch:
     id: relay
     internal: true
     icon: mdi:alarm-bell
-  - platform: restart
-    name: "Doorbell Restart"
   - platform: template
     name: Doorbell Chime Active
     id: chime_active
